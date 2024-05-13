@@ -8,6 +8,14 @@
       "program": "${file}",
       "console": "integratedTerminal",
       "justMyCode": false
+    },
+    {
+      "name": "Litestar",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "litestar",
+      "justMyCode": false,
+      "args": ["--app", "app.app:app", "run"]
     }
   ]
 }
