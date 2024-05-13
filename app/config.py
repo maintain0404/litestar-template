@@ -7,7 +7,7 @@ __all__ = ["config", "Config"]
 
 
 class DatabaseConfig(BaseModel):
-    uri: str = "sqlite+aiosqlite:////data/db/app.sqlite3"
+    uri: str = "sqlite+aiosqlite:///data/db/app.sqlite3"
 
 
 class Config(BaseSettings):
