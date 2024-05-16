@@ -22,6 +22,20 @@
     "source.convertImportFormat",
     "source.unusedImports"
   ],
+  "python.analysis.packageIndexDepths": [
+    {
+      "name": "sqlalchemy",
+      "depth": 2
+    },
+    {
+      "name": "advanced_alchemy",
+      "depth": 2
+    },
+    {
+      "name": "litestar",
+      "depth": 2
+    }
+  ],
   "[python]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "charliermarsh.ruff"

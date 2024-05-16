@@ -1,13 +1,8 @@
 {
-    "recommendations": [
-        "charliermarsh.ruff",
-        "ms-python.python",
-        "ms-python.vscode-pylance",
-        "esbenp.prettier-vscode",
-        "tamasfe.even-better-toml",
-        "donjayamanne.git-extension-pack"
-    ],
-    "unwantedRecommendations": [
-        "divyanshuagrawal.competitive-programming-helper"
-    ]
+  "recommendations": [
+    "denoland.vscode-deno",
+    "donjayamanne.python-environment-manager",
+    "rodolphebarbanneau.python-docstring-highlighter"
+  ],
+  "unwantedRecommendations": ["divyanshuagrawal.competitive-programming-helper"]
 }
