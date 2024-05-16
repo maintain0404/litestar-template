@@ -15,7 +15,7 @@ from litestar.middleware.logging import LoggingMiddlewareConfig
 from litestar.plugins import CLIPluginProtocol
 from litestar.plugins.structlog import StructlogConfig, StructlogPlugin
 
-from app.config import Config, config
+from app.config import Config
 from app.handler.http import router
 
 
@@ -26,14 +26,16 @@ class ApplicationPlugin(CLIPluginProtocol):
         cli.add_command(healthcheck)
 
 
-def create_sqla_config(config: Config) -> SQLAlchemyAsyncConfig:
+def create_sqla_config(config: Config | None = None) -> SQLAlchemyAsyncConfig:
+    config = config or Config()
     return SQLAlchemyAsyncConfig(
         connection_string=config.db.uri,
         session_config=AsyncSessionConfig(expire_on_commit=False),
     )
 
 
-def create_structlog_config(config: Config) -> StructlogConfig:
+def create_structlog_config(config: Config | None = None) -> StructlogConfig:
+    config = config or Config()
     request_log_fields = ["method", "path", "path_params", "query"]
     response_log_fields = ["status_code"]
 
@@ -101,7 +103,8 @@ def create_structlog_config(config: Config) -> StructlogConfig:
     )
 
 
-def create_app(config: Config) -> Litestar:
+def create_app(config: Config | None = None) -> Litestar:
+    config = config or Config()
     return Litestar(
         debug=config.debug,
         route_handlers=[router],
@@ -113,4 +116,4 @@ def create_app(config: Config) -> Litestar:
     )
 
 
-app = create_app(config)
+app = create_app()
