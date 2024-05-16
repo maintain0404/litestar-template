@@ -8,6 +8,7 @@ from litestar.contrib.sqlalchemy.plugins import (
     SQLAlchemyAsyncConfig,
     SQLAlchemyInitPlugin,
 )
+from litestar.middleware.session.client_side import CookieBackendConfig
 from litestar.plugins import CLIPluginProtocol
 
 from app.config import Config, config
@@ -30,9 +31,12 @@ def create_sqla_config(config: Config) -> SQLAlchemyAsyncConfig:
 
 
 def create_app(config: Config) -> Litestar:
+    session_config = CookieBackendConfig(secret=b"litestar-session")
     return Litestar(
         debug=config.debug,
         route_handlers=[router],
+        middleware=[session_config.middleware],
+        # pdb_on_exception=config.debug,
         plugins=[
             SQLAlchemyInitPlugin(config=create_sqla_config(config)),
             ApplicationPlugin(),

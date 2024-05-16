@@ -29,7 +29,7 @@ class AnnonymousAccount(BaseAccount): ...
 class Account(BaseAccount, UUIDAuditBase):
     __tablename__ = "account"
 
-    email: Mapped[str]
+    email: Mapped[str] = mapped_column(unique=True, index=True, nullable=False)
     name: Mapped[str | None] = mapped_column(nullable=True, default=None)
     hashed_password: Mapped[str | None] = mapped_column(
         String(length=255), nullable=True, default=None
@@ -41,7 +41,7 @@ class Account(BaseAccount, UUIDAuditBase):
     # ORM Relationships
     # ------------
     oidc_accounts: Mapped[list[OIDCAccount]] = relationship(
-        back_populates="user",
+        back_populates="account",
         lazy="noload",
         cascade="all, delete",
         uselist=True,
