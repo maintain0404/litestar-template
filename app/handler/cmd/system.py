@@ -4,7 +4,7 @@ from click import command
 from rich import get_console
 
 from app.app import create_sqla_config
-from app.config import config
+from app.config.config import config
 from app.service.system.service import SystemService
 
 
